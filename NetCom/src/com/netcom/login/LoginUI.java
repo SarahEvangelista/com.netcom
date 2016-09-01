@@ -5,6 +5,9 @@
  */
 package com.netcom.login;
 
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
+
 /**
  *
  * @author Sarah
@@ -48,6 +51,11 @@ public class LoginUI extends javax.swing.JFrame {
                 userFldFocusLost(evt);
             }
         });
+        userFld.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                userFldKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,7 +72,7 @@ public class LoginUI extends javax.swing.JFrame {
                         .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(userFld, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,6 +102,18 @@ public class LoginUI extends javax.swing.JFrame {
             userFld.setText("User");
         }
     }//GEN-LAST:event_userFldFocusLost
+
+    private void userFldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userFldKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Login login = new Login(userFld.getText(), Arrays.toString(pwdField.getPassword()));
+            if (login.isValidCred()) {
+                // open next UI element
+            } 
+            else {
+                //pop-up error message
+            }
+        }
+    }//GEN-LAST:event_userFldKeyReleased
 
     /**
      * @param args the command line arguments
