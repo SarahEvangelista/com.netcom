@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.netcom.login;
 
 import com.netcom.dbaccess.SQLQuery;
@@ -14,40 +9,35 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Sarah
- */
-public class Login implements SQLQuery{
+public class Login implements SQLQuery {
+
     private String user, pwd;
     private String host, dbUser, dbPwd;
     private Connection conn;
-    
-    public Login(String user, String pwd){
-        super();
+
+    public Login(String user, String pwd) {
         this.user = user;
         this.pwd = pwd;
     }
-    
+
     @Override
     public boolean initConnection() {
         //Make a database
-        this.host = "jdbc:odbc://localhost:8080/[tables]";
+        this.host = "jdbc:odbc://localhost:8080/[tables]"; // put this to a config file
         this.dbUser = "admin";
         this.dbPwd = "Password";
-        
-        try (Connection connection = DriverManager.getConnection(this.host, this.dbUser, this.dbPwd)){
+
+        try (Connection connection = DriverManager.getConnection(this.host, this.dbUser, this.dbPwd)) {
             //wait to connect til 30 seconds
             this.conn = connection;
             return this.conn.isValid(30);
-        }
-        catch(SQLException excp){
+        } catch (SQLException excp) {
             System.err.println("Error in database connection. \n" + excp.getNextException());
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, excp);
             return false;
         }
     }
-    
+
     @Override
     public String executeSelect() {
         try {
@@ -56,8 +46,7 @@ public class Login implements SQLQuery{
             ResultSet result = createStatement.getResultSet();
             //get the result
             return result.toString();
-        } 
-        catch(SQLException excp){
+        } catch (SQLException excp) {
             System.err.println("Error in database connection. \n" + excp.getNextException());
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, excp);
             return null;
@@ -73,9 +62,8 @@ public class Login implements SQLQuery{
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, excp);
         }
     }
-    
-    protected boolean isValidCred(){
-        
+
+    protected boolean isValidCred() {
         return false;
     }
 }

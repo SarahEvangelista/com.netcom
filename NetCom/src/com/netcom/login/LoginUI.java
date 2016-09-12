@@ -5,6 +5,7 @@
  */
 package com.netcom.login;
 
+import com.netcom.parent.ParentContainer;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
 
@@ -18,6 +19,7 @@ public class LoginUI extends javax.swing.JFrame {
      * Creates new form LoginUI
      */
     public LoginUI() {
+        super("User Login");
         initComponents();
         this.setLocationRelativeTo(null); //set the window to center
     }
@@ -107,7 +109,7 @@ public class LoginUI extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Login login = new Login(userFld.getText(), Arrays.toString(pwdField.getPassword()));
             if (login.isValidCred()) {
-                // open next UI element
+                ParentContainer.invokeParentCont();
             } 
             else {
                 //pop-up error message

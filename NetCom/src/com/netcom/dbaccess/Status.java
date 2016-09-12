@@ -9,8 +9,16 @@ package com.netcom.dbaccess;
  *
  * @author Sarah
  */
-public interface SQLQuery {
-    public boolean initConnection();
-    public String executeSelect();
-    public void closeConnection();
+public enum Status {
+    SUCCESS("Success"), FAILED("Failed");
+
+    private String status;
+
+    private Status(String stat) {
+        status = stat;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
 }
