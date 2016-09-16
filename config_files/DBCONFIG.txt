@@ -1,0 +1,5 @@
+NetCom Master DB
+
+Connection Name: NCMASTERDB
+User: Admin
+Password: Password!123

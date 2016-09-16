@@ -15,7 +15,7 @@ public class Login implements SQLQuery {
     private String host, dbUser, dbPwd;
     private Connection conn;
 
-    public Login(String user, String pwd) {
+    protected Login(String user, String pwd) {
         this.user = user;
         this.pwd = pwd;
     }
